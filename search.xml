@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>%2F2019%2F09%2F01%2Ftest%2F</url>
-    <content type="text"><![CDATA[Document]]></content>
+    <title><![CDATA[主页]]></title>
+    <url>%2F2019%2F09%2F01%2Findex%2F</url>
+    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[个人简历]]></title>
-    <url>%2F2019%2F09%2F01%2Findex%2F</url>
-    <content type="text"></content>
+    <url>%2F2019%2F09%2F01%2Ftest%2F</url>
+    <content type="text"><![CDATA[个人简历]]></content>
   </entry>
 </search>
