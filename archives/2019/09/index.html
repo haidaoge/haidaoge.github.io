@@ -4,7 +4,7 @@
 
 
 
-<html lang="zh-cn">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -42,29 +42,29 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Kopieren',
-      copy_success: 'Kopiert',
-      copy_failure: 'Kopieren fehlgeschlagen'
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     },
     sidebarPadding: 40
   };
 </script>
 
-  <meta name="description" content="haidaoge 的个人博客">
+  <meta name="description" content="haidaoge 的日志">
 <meta name="keywords" content="haidaoge blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="haidaoge blog">
+<meta property="og:title" content="haidaoge 的日志">
 <meta property="og:url" content="haidaoge.github.io/archives/2019/09/index.html">
-<meta property="og:site_name" content="haidaoge blog">
-<meta property="og:description" content="haidaoge 的个人博客">
-<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="haidaoge 的日志">
+<meta property="og:description" content="haidaoge 的日志">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="haidaoge blog">
-<meta name="twitter:description" content="haidaoge 的个人博客">
+<meta name="twitter:title" content="haidaoge 的日志">
+<meta name="twitter:description" content="haidaoge 的日志">
   <link rel="canonical" href="haidaoge.github.io/archives/2019/09/">
 
 
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>Archiv | haidaoge blog</title>
+  <title>归档 | haidaoge 的日志</title>
   
 
 
@@ -115,7 +115,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
   <div class="container use-motion">
     <div class="headband"></div>
 
@@ -126,14 +126,14 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">haidaoge blog</span>
+        <span class="site-title">haidaoge 的日志</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -153,7 +153,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
       
@@ -164,7 +164,29 @@
       
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
       
@@ -175,13 +197,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
         <a href="javascript:;" class="popup-trigger">
         
-          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
       </li>
     
   </ul>
@@ -195,7 +217,7 @@
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="Suche..." spellcheck="false"
+           placeholder="搜索..." spellcheck="false"
            type="text" id="search-input">
   </div>
   <span class="popup-btn-close">
@@ -232,6 +254,12 @@
       
       
     
+      
+      
+    
+      
+      
+    
     
 
   
@@ -250,7 +278,7 @@
         
           
         
-        <span class="collection-header">Öhm..! Insgesamt 2 Artikel. Bleib dran.</span>
+        <span class="collection-header">嗯..! 目前共计 6 篇日志。 继续努力。</span>
       </div>
       
 
@@ -271,17 +299,17 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2019/09/01/index/" itemprop="url">
-            <span itemprop="name">主页</span>
+          <a class="post-title-link" href="/2019/09/08/git/git配置ssh/" itemprop="url">
+            <span itemprop="name">git配置ssh</span>
           </a>
         
       </h2>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-01T16:17:25+08:00"
-              content="2019-09-01">
-          09-01
+              datetime="2019-09-08T17:41:53+08:00"
+              content="2019-09-08">
+          09-08
         </time>
       </div>
 
@@ -300,17 +328,133 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2019/09/01/test/" itemprop="url">
-            <span itemprop="name">个人简历</span>
+          <a class="post-title-link" href="/2019/09/08/git/git推送本地项目到远程/" itemprop="url">
+            <span itemprop="name">git推送本地项目到远程</span>
           </a>
         
       </h2>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2019-09-01T16:17:25+08:00"
-              content="2019-09-01">
-          09-01
+              datetime="2019-09-08T16:47:32+08:00"
+              content="2019-09-08">
+          09-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+  
+  
+
+  
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/09/08/git/git 创建回退到某个节点的新分支/" itemprop="url">
+            <span itemprop="name">git 创建回退到某个节点的新分支</span>
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2019-09-08T16:41:53+08:00"
+              content="2019-09-08">
+          09-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+  
+  
+
+  
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/09/08/git/git忽略规则及.gitignore规则不生效的解决办法/" itemprop="url">
+            <span itemprop="name">git忽略规则及.gitignore规则不生效的解决办法</span>
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2019-09-08T16:41:53+08:00"
+              content="2019-09-08">
+          09-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+  
+  
+
+  
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/09/08/git/git常用命令/" itemprop="url">
+            <span itemprop="name">git 常用命令</span>
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2019-09-08T16:41:53+08:00"
+              content="2019-09-08">
+          09-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+  
+  
+
+  
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/09/08/linux/linux常用命令/" itemprop="url">
+            <span itemprop="name">Linux 常用命令</span>
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2019-09-08T15:49:10+08:00"
+              content="2019-09-08">
+          09-08
         </time>
       </div>
 
@@ -349,10 +493,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Inhaltsverzeichnis
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Übersicht
+          站点概览
         </li>
       </ul>
 
@@ -367,15 +511,41 @@
       src="/images/avatar.png"
       alt="haidaoge">
   <p class="site-author-name" itemprop="name">haidaoge</p>
-  <div class="site-description" itemprop="description">haidaoge 的个人博客</div>
+  <div class="site-description" itemprop="description">haidaoge 的日志</div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
-          <span class="site-state-item-name">Artikel</span>
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags">
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
         </a>
       </div>
     
@@ -406,9 +576,9 @@
   </span>
   <span class="author" itemprop="copyrightHolder">haidaoge</span>
 </div>
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
 
         
 <div class="busuanzi-count">
@@ -416,7 +586,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
-    <span class="site-uv" title="Alle Besucher">
+    <span class="site-uv" title="总访客量">
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
     </span>
   
@@ -425,7 +595,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-eye"></i>
     </span>
-    <span class="site-pv" title="Alle Aufrufe">
+    <span class="site-pv" title="总访问量">
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
     </span>
   
@@ -450,6 +620,9 @@
   
 
 
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>

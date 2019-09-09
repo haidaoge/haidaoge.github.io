@@ -1,0 +1,9 @@
+@charset 'utf-8';
+.s-aside {
+  width: 360px;
+  height: 800px;
+  background-color: #808080;
+}
+.s-header-wrap {
+  width: 200px;
+}

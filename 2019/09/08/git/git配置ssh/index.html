@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.jpg?v=7.4.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一. 在Linux或macOS上打开终端，或在Windows上打开Git Bash / WSL。二. 生成新的ED25519 SSH密钥对：1ssh-keygen -t ed25519 -C &amp;quot;email@example.com&amp;quot;或者，如果你想使用RSA：1ssh-keygen -o -t rsa -b 4096 -C &amp;quot;email@example.com&amp;quot;">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git配置ssh">
+<meta property="og:url" content="haidaoge.github.io/2019/09/08/git/git配置ssh/index.html">
+<meta property="og:site_name" content="haidaoge 的日志">
+<meta property="og:description" content="一. 在Linux或macOS上打开终端，或在Windows上打开Git Bash / WSL。二. 生成新的ED25519 SSH密钥对：1ssh-keygen -t ed25519 -C &amp;quot;email@example.com&amp;quot;或者，如果你想使用RSA：1ssh-keygen -o -t rsa -b 4096 -C &amp;quot;email@example.com&amp;quot;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-08T09:31:24.792Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git配置ssh">
+<meta name="twitter:description" content="一. 在Linux或macOS上打开终端，或在Windows上打开Git Bash / WSL。二. 生成新的ED25519 SSH密钥对：1ssh-keygen -t ed25519 -C &amp;quot;email@example.com&amp;quot;或者，如果你想使用RSA：1ssh-keygen -o -t rsa -b 4096 -C &amp;quot;email@example.com&amp;quot;">
+  <link rel="canonical" href="haidaoge.github.io/2019/09/08/git/git配置ssh/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>git配置ssh | haidaoge 的日志</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">haidaoge 的日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="haidaoge.github.io/2019/09/08/git/git配置ssh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haidaoge">
+      <meta itemprop="description" content="haidaoge 的日志">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haidaoge 的日志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">git配置ssh
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-08 17:41:53 / 修改时间：17:31:24" itemprop="dateCreated datePublished" datetime="2019-09-08T17:41:53+08:00">2019-09-08</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="一-在Linux或macOS上打开终端，或在Windows上打开Git-Bash-WSL。"><a href="#一-在Linux或macOS上打开终端，或在Windows上打开Git-Bash-WSL。" class="headerlink" title="一. 在Linux或macOS上打开终端，或在Windows上打开Git Bash / WSL。"></a>一. 在Linux或macOS上打开终端，或在Windows上打开Git Bash / WSL。</h4><h4 id="二-生成新的ED25519-SSH密钥对："><a href="#二-生成新的ED25519-SSH密钥对：" class="headerlink" title="二. 生成新的ED25519 SSH密钥对："></a>二. 生成新的ED25519 SSH密钥对：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;email@example.com&quot;</span><br></pre></td></tr></table></figure><p>或者，如果你想使用RSA：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -o -t rsa -b 4096 -C &quot;email@example.com&quot;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+
+<p>该-C标志在键中添加注释，以防你有多个注释，并想知道哪个是哪个。这是可选的。</p>
+<h4 id="三-接下来，系统将提示你输入文件路径以保存SSH密钥对。如果你还没有SSH密钥对且未生成部署密钥，请按下建议的路径"><a href="#三-接下来，系统将提示你输入文件路径以保存SSH密钥对。如果你还没有SSH密钥对且未生成部署密钥，请按下建议的路径" class="headerlink" title="三. 接下来，系统将提示你输入文件路径以保存SSH密钥对。如果你还没有SSH密钥对且未生成部署密钥，请按下建议的路径"></a>三. 接下来，系统将提示你输入文件路径以保存SSH密钥对。如果你还没有SSH密钥对且未生成部署密钥，请按下建议的路径</h4><p> Enter。使用建议的路径通常允许SSH客户端自动使用SSH密钥对而无需其他配置。<br>如果你已经拥有一个带有建议文件路径的SSH密钥对，则需要输入一个新的文件路径并声明<br>该SSH密钥对将在你的~/.ssh/config文件中用于哪个主机密钥对。</p>
+<h4 id="四-确定路径后，系统将提示你输入密码以保护新的SSH密钥对。这是使用密码的最佳做法，但这不是必需的，你可以通过按Enter两次跳过创建密码"><a href="#四-确定路径后，系统将提示你输入密码以保护新的SSH密钥对。这是使用密码的最佳做法，但这不是必需的，你可以通过按Enter两次跳过创建密码" class="headerlink" title="四. 确定路径后，系统将提示你输入密码以保护新的SSH密钥对。这是使用密码的最佳做法，但这不是必需的，你可以通过按Enter两次跳过创建密码=="></a>四. 确定路径后，系统将提示你输入密码以保护新的SSH密钥对。这是使用密码的最佳做法，但这不是必需的，你可以通过按Enter两次跳过创建密码==</h4><p> 。<br>在任何情况下，如果要添加或更改SSH密钥对的密码，可以使用以下-p标志：<br>ssh-keygen -p -o -f <keyname></keyname></p>
+<h4 id="五-温馨提示"><a href="#五-温馨提示" class="headerlink" title="五. 温馨提示"></a>五. 温馨提示</h4><p><strong>如果不想clone、拉取、提交时输入密码，那么生成密钥的时候就不要输入密码</strong></p>
+<hr>
+<blockquote>
+<p>原文如下</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;div class=&quot;documentation md prepend-top-default&quot;&gt;</span><br><span class="line">&lt;h1 data-sourcepos=&quot;1:1-1:21&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-gitlab-and-ssh-keys&quot; class=&quot;anchor&quot; href=&quot;#gitlab-and-ssh-keys&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;GitLab and SSH keys&lt;/h1&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;3:1-6:64&quot; dir=&quot;auto&quot;&gt;Git is a distributed version control system, which means you can work locally&amp;#x000A;but you can also share or &quot;push&quot; your changes to other servers.&amp;#x000A;Before you can push your changes to a GitLab server&amp;#x000A;you need a secure communication channel for sharing information.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;8:1-9:75&quot; dir=&quot;auto&quot;&gt;The SSH protocol provides this security and allows you to authenticate to the&amp;#x000A;GitLab remote server without supplying your username or password each time.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;11:1-12:143&quot; dir=&quot;auto&quot;&gt;For a more detailed explanation of how the SSH protocol works, read&amp;#x000A;&lt;a href=&quot;https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;this nice tutorial by DigitalOcean&lt;/a&gt;.&lt;/p&gt;&amp;#x000A;&lt;h2 data-sourcepos=&quot;14:1-14:15&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-requirements&quot; class=&quot;anchor&quot; href=&quot;#requirements&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Requirements&lt;/h2&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;16:1-17:63&quot; dir=&quot;auto&quot;&gt;The only requirement is to have the OpenSSH client installed on your system. This&amp;#x000A;comes pre-installed on GNU/Linux and macOS, but not on Windows.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;19:1-20:9&quot; dir=&quot;auto&quot;&gt;Depending on your Windows version, there are different methods to work with&amp;#x000A;SSH keys.&lt;/p&gt;&amp;#x000A;&lt;h3 data-sourcepos=&quot;22:1-22:43&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-windows-10-windows-subsystem-for-linux&quot; class=&quot;anchor&quot; href=&quot;#windows-10-windows-subsystem-for-linux&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Windows 10: Windows Subsystem for Linux&lt;/h3&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;24:1-28:25&quot; dir=&quot;auto&quot;&gt;Starting with Windows 10, you can&amp;#x000A;&lt;a href=&quot;https://docs.microsoft.com/en-us/windows/wsl/install-win10&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;install the Windows Subsystem for Linux (WSL)&lt;/a&gt;&amp;#x000A;where you can run Linux distributions directly on Windows, without the overhead&amp;#x000A;of a virtual machine. Once installed and set up, you&apos;ll have the Git and SSH&amp;#x000A;clients at your disposal.&lt;/p&gt;&amp;#x000A;&lt;h3 data-sourcepos=&quot;30:1-30:43&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-windows-10-81-and-7-git-for-windows&quot; class=&quot;anchor&quot; href=&quot;#windows-10-81-and-7-git-for-windows&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Windows 10, 8.1, and 7: Git for Windows&lt;/h3&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;32:1-35:77&quot; dir=&quot;auto&quot;&gt;The easiest way to install Git and the SSH client on Windows 8.1 and Windows 7&amp;#x000A;is &lt;a href=&quot;https://gitforwindows.org&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;Git for Windows&lt;/a&gt;. It provides a Bash&amp;#x000A;emulation (Git Bash) used for running Git from the command line and the&amp;#x000A;&lt;code&gt;ssh-keygen&lt;/code&gt; command that is useful to create SSH keys as you&apos;ll learn below.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;37:1-42:140&quot; dir=&quot;auto&quot;&gt;NOTE: &lt;strong&gt;Alternative tools:&lt;/strong&gt;&amp;#x000A;Although not explored in this page, you can use some alternative tools.&amp;#x000A;&lt;a href=&quot;https://www.cygwin.com&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;Cygwin&lt;/a&gt; is a large collection of GNU and open source&amp;#x000A;tools which provide functionality similar to a Unix distribution.&amp;#x000A;&lt;a href=&quot;https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;PuttyGen&lt;/a&gt;&amp;#x000A;provides a graphical user interface to &lt;a href=&quot;https://tartarus.org/~simon/putty-snapshots/htmldoc/Chapter8.html#pubkey-puttygen&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;create SSH keys&lt;/a&gt;.&lt;/p&gt;&amp;#x000A;&lt;h2 data-sourcepos=&quot;44:1-44:40&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-types-of-ssh-keys-and-which-to-choose&quot; class=&quot;anchor&quot; href=&quot;#types-of-ssh-keys-and-which-to-choose&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Types of SSH keys and which to choose&lt;/h2&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;46:1-50:40&quot; dir=&quot;auto&quot;&gt;GitLab supports RSA, DSA, ECDSA, and ED25519 keys. Their difference lies on&amp;#x000A;the signing algorithm, and some of them have advantages over the others. For&amp;#x000A;more information, you can read this&amp;#x000A;&lt;a href=&quot;https://wiki.archlinux.org/index.php/SSH_keys#Choosing_the_authentication_key_type&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;nice article on ArchWiki&lt;/a&gt;.&amp;#x000A;We&apos;ll focus on ED25519 and RSA and here.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;52:1-55:69&quot; dir=&quot;auto&quot;&gt;NOTE: &lt;strong&gt;Note:&lt;/strong&gt;&amp;#x000A;As an admin, you can &lt;a href=&quot;../security/ssh_keys_restrictions.md&quot;&gt;restrict which keys should be permitted and their minimum length&lt;/a&gt;.&amp;#x000A;By default, all keys are permitted, which is also the case for&amp;#x000A;&lt;a href=&quot;../user/gitlab_com/index.md#ssh-host-keys-fingerprints&quot;&gt;GitLab.com&lt;/a&gt;.&lt;/p&gt;&amp;#x000A;&lt;h3 data-sourcepos=&quot;57:1-57:20&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-ed25519-ssh-keys&quot; class=&quot;anchor&quot; href=&quot;#ed25519-ssh-keys&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;ED25519 SSH keys&lt;/h3&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;59:1-61:65&quot; dir=&quot;auto&quot;&gt;Following &lt;a href=&quot;https://linux-audit.com/using-ed25519-openssh-keys-instead-of-dsa-rsa-ecdsa/&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;best practices&lt;/a&gt;,&amp;#x000A;you should always favor &lt;a href=&quot;https://ed25519.cr.yp.to/&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;ED25519&lt;/a&gt; SSH keys, since they&amp;#x000A;are more secure and have better performance over the other types.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;63:1-66:41&quot; dir=&quot;auto&quot;&gt;ED25519 SSH keys were introduced in OpenSSH 6.5,&amp;#x000A;so any modern OS should include the option to create them.&amp;#x000A;If for any reason your OS or the GitLab instance you interact with doesn&apos;t&amp;#x000A;support ED25519, you can fallback to RSA.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;68:1-70:109&quot; dir=&quot;auto&quot;&gt;NOTE: &lt;strong&gt;Note:&lt;/strong&gt;&amp;#x000A;Omnibus does not ship with OpenSSH, so it uses the version on your GitLab server. If using&amp;#x000A;Omnibus, ensure the version of OpenSSH installed is version 6.5 or newer if you want to use ED25519 SSH keys.&lt;/p&gt;&amp;#x000A;&lt;h3 data-sourcepos=&quot;72:1-72:16&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-rsa-ssh-keys&quot; class=&quot;anchor&quot; href=&quot;#rsa-ssh-keys&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;RSA SSH keys&lt;/h3&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;74:1-76:31&quot; dir=&quot;auto&quot;&gt;RSA keys are the most common ones and therefore the most compatible with&amp;#x000A;servers that may have an old OpenSSH version. Use them if the GitLab server&amp;#x000A;doesn&apos;t work with ED25519 keys.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;78:1-80:8&quot; dir=&quot;auto&quot;&gt;The minimum key size is 1024 bits, defaulting to 2048. If you wish to generate a&amp;#x000A;stronger RSA key pair, specify the &lt;code&gt;-b&lt;/code&gt; flag with a higher bit value than the&amp;#x000A;default.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;82:1-86:14&quot; dir=&quot;auto&quot;&gt;The old, default password encoding for SSH private keys is&amp;#x000A;&lt;a href=&quot;https://latacora.singles/2018/08/03/the-default-openssh.html&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;insecure&lt;/a&gt;;&amp;#x000A;it&apos;s only a single round of an MD5 hash. Since OpenSSH version 6.5, you should&amp;#x000A;use the &lt;code&gt;-o&lt;/code&gt; option to &lt;code&gt;ssh-keygen&lt;/code&gt; to encode your private key in a new, more&amp;#x000A;secure format.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;88:1-90:19&quot; dir=&quot;auto&quot;&gt;If you already have an RSA SSH key pair to use with GitLab, consider upgrading it&amp;#x000A;to use the more secure password encryption format by using the following command&amp;#x000A;on the private key:&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight shell&quot; lang=&quot;shell&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;shell&quot;&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; ~/.ssh/id_rsa&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;h2 data-sourcepos=&quot;96:1-96:32&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-generating-a-new-ssh-key-pair&quot; class=&quot;anchor&quot; href=&quot;#generating-a-new-ssh-key-pair&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Generating a new SSH key pair&lt;/h2&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;98:1-99:66&quot; dir=&quot;auto&quot;&gt;Before creating an SSH key pair, make sure to understand the&amp;#x000A;&lt;a href=&quot;#types-of-ssh-keys-and-which-to-choose&quot;&gt;different types of keys&lt;/a&gt;.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;101:1-101:29&quot; dir=&quot;auto&quot;&gt;To create a new SSH key pair:&lt;/p&gt;&amp;#x000A;&lt;ol data-sourcepos=&quot;103:1-140:0&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;103:1-103:67&quot;&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;103:4-103:67&quot;&gt;Open a terminal on Linux or macOS, or Git Bash / WSL on Windows.&lt;/p&gt;&amp;#x000A;&lt;/li&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;104:1-118:0&quot;&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;104:4-104:39&quot;&gt;Generate a new ED25519 SSH key pair:&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight shell&quot; lang=&quot;shell&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;shell&quot;&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; ed25519 &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;email@example.com&quot;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;110:4-110:30&quot;&gt;Or, if you want to use RSA:&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight shell&quot; lang=&quot;shell&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;shell&quot;&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; rsa &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 4096 &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;email@example.com&quot;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;116:4-117:51&quot;&gt;The &lt;code&gt;-C&lt;/code&gt; flag adds a comment in the key in case you have multiple of them&amp;#x000A;and want to tell which is which. It is optional.&lt;/p&gt;&amp;#x000A;&lt;/li&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;119:1-128:0&quot;&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;119:4-123:74&quot;&gt;Next, you will be prompted to input a file path to save your SSH key pair to.&amp;#x000A;If you don&apos;t already have an SSH key pair and aren&apos;t generating a &lt;a href=&quot;#deploy-keys&quot;&gt;deploy key&lt;/a&gt;,&amp;#x000A;use the suggested path by pressing&amp;#x000A;&lt;kbd&gt;Enter&lt;/kbd&gt;. Using the suggested path will normally allow your SSH client&amp;#x000A;to automatically use the SSH key pair with no additional configuration.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;125:4-127:67&quot;&gt;If you already have an SSH key pair with the suggested file path, you will need&amp;#x000A;to input a new file path and &lt;a href=&quot;#working-with-non-default-ssh-key-pair-paths&quot;&gt;declare what host&lt;/a&gt;&amp;#x000A;this SSH key pair will be used for in your &lt;code&gt;~/.ssh/config&lt;/code&gt; file.&lt;/p&gt;&amp;#x000A;&lt;/li&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;129:1-140:0&quot;&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;129:4-132:26&quot;&gt;Once the path is decided, you will be prompted to input a password to&amp;#x000A;secure your new SSH key pair. It&apos;s a best practice to use a password,&amp;#x000A;but it&apos;s not required and you can skip creating it by pressing&amp;#x000A;&lt;kbd&gt;Enter&lt;/kbd&gt; twice.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;134:4-135:29&quot;&gt;If, in any case, you want to add or change the password of your SSH key pair,&amp;#x000A;you can use the &lt;code&gt;-p&lt;/code&gt; flag:&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight plaintext&quot; lang=&quot;plaintext&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;ssh-keygen -p -o -f &amp;lt;keyname&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;/li&gt;&amp;#x000A;&lt;/ol&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;141:1-141:74&quot; dir=&quot;auto&quot;&gt;Now, it&apos;s time to add the newly created public key to your GitLab account.&lt;/p&gt;&amp;#x000A;&lt;h2 data-sourcepos=&quot;143:1-143:43&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-adding-an-ssh-key-to-your-gitlab-account&quot; class=&quot;anchor&quot; href=&quot;#adding-an-ssh-key-to-your-gitlab-account&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Adding an SSH key to your GitLab account&lt;/h2&gt;&amp;#x000A;&lt;ol data-sourcepos=&quot;145:1-182:0&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;145:1-171:0&quot;&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;145:4-146:38&quot;&gt;Copy your &lt;strong&gt;public&lt;/strong&gt; SSH key to the clipboard by using one of the commands below&amp;#x000A;depending on your Operating System:&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;148:4-148:13&quot;&gt;&lt;strong&gt;macOS:&lt;/strong&gt;&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight shell&quot; lang=&quot;shell&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;shell&quot;&gt;pbcopy &amp;lt; ~/.ssh/id_ed25519.pub&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;154:4-154:52&quot;&gt;&lt;strong&gt;WSL / GNU/Linux (requires the xclip package):&lt;/strong&gt;&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight shell&quot; lang=&quot;shell&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;shell&quot;&gt;xclip &lt;span class=&quot;nt&quot;&gt;-sel&lt;/span&gt; clip &amp;lt; ~/.ssh/id_ed25519.pub&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;160:4-160:27&quot;&gt;&lt;strong&gt;Git Bash on Windows:&lt;/strong&gt;&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight shell&quot; lang=&quot;shell&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; ~/.ssh/id_ed25519.pub | clip&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;166:4-167:54&quot;&gt;You can also open the key in a graphical editor and copy it from there,&amp;#x000A;but be careful not to accidentally change anything.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;169:4-170:60&quot;&gt;NOTE: &lt;strong&gt;Note:&lt;/strong&gt;&amp;#x000A;If you opted to create an RSA key, the name might differ.&lt;/p&gt;&amp;#x000A;&lt;/li&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;172:1-182:0&quot;&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;172:4-172:57&quot;&gt;Add your &lt;strong&gt;public&lt;/strong&gt; SSH key to your GitLab account by:&lt;/p&gt;&amp;#x000A;&lt;ol data-sourcepos=&quot;173:4-178:0&quot;&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;173:4-173:80&quot;&gt;Clicking your avatar in the upper right corner and selecting &lt;strong&gt;Settings&lt;/strong&gt;.&lt;/li&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;174:4-176:120&quot;&gt;Navigating to &lt;strong&gt;SSH Keys&lt;/strong&gt; and pasting your &lt;strong&gt;public&lt;/strong&gt; key in the &lt;strong&gt;Key&lt;/strong&gt; field. If you:&amp;#x000A;&lt;ul data-sourcepos=&quot;175:7-176:120&quot;&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;175:7-175:80&quot;&gt;Created the key with a comment, this will appear in the &lt;strong&gt;Title&lt;/strong&gt; field.&lt;/li&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;176:7-176:120&quot;&gt;Created the key without a comment, give your key an identifiable title like &lt;em&gt;Work Laptop&lt;/em&gt; or &lt;em&gt;Home Workstation&lt;/em&gt;.&lt;/li&gt;&amp;#x000A;&lt;/ul&gt;&amp;#x000A;&lt;/li&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;177:4-178:0&quot;&gt;Click the &lt;strong&gt;Add key&lt;/strong&gt; button.&lt;/li&gt;&amp;#x000A;&lt;/ol&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;179:4-181:77&quot;&gt;NOTE: &lt;strong&gt;Note:&lt;/strong&gt;&amp;#x000A;If you manually copied your public SSH key make sure you copied the entire&amp;#x000A;key starting with &lt;code&gt;ssh-ed25519&lt;/code&gt; (or &lt;code&gt;ssh-rsa&lt;/code&gt;) and ending with your email.&lt;/p&gt;&amp;#x000A;&lt;/li&gt;&amp;#x000A;&lt;/ol&gt;&amp;#x000A;&lt;h2 data-sourcepos=&quot;183:1-183:46&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-testing-that-everything-is-set-up-correctly&quot; class=&quot;anchor&quot; href=&quot;#testing-that-everything-is-set-up-correctly&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Testing that everything is set up correctly&lt;/h2&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;185:1-186:74&quot; dir=&quot;auto&quot;&gt;To test whether your SSH key was added correctly, run the following command in&amp;#x000A;your terminal (replacing &lt;code&gt;gitlab.com&lt;/code&gt; with your GitLab&apos;s instance domain):&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight shell&quot; lang=&quot;shell&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;shell&quot;&gt;ssh &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; git@gitlab.com&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;192:1-195:26&quot; dir=&quot;auto&quot;&gt;The first time you connect to GitLab via SSH, you will be asked to verify the&amp;#x000A;authenticity of the GitLab host you are connecting to.&amp;#x000A;For example, when connecting to GitLab.com, answer &lt;code&gt;yes&lt;/code&gt; to add GitLab.com to&amp;#x000A;the list of trusted hosts:&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight plaintext&quot; lang=&quot;plaintext&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;The authenticity of host &apos;gitlab.com (35.231.145.151)&apos; can&apos;t be established.&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC2&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;ECDSA key fingerprint is SHA256:HbW3g8zUjNSksFbqTiUWPWg2Bq1x8xdGUrliXFzSnUw.&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC3&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;Are you sure you want to continue connecting (yes/no)? yes&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC4&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;Warning: Permanently added &apos;gitlab.com&apos; (ECDSA) to the list of known hosts.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;204:1-207:53&quot; dir=&quot;auto&quot;&gt;NOTE: &lt;strong&gt;Note:&lt;/strong&gt;&amp;#x000A;For GitLab.com, consult the&amp;#x000A;&lt;a href=&quot;../user/gitlab_com/index.md#ssh-host-keys-fingerprints&quot;&gt;SSH host keys fingerprints&lt;/a&gt;,&amp;#x000A;to make sure you&apos;re connecting to the correct server.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;209:1-211:68&quot; dir=&quot;auto&quot;&gt;Once added to the list of known hosts, you won&apos;t be asked to validate the&amp;#x000A;authenticity of GitLab&apos;s host again. Run the above command once more, and&amp;#x000A;you should only receive a &lt;em&gt;Welcome to GitLab, &lt;code&gt;@username&lt;/code&gt;!&lt;/em&gt; message.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;213:1-214:46&quot; dir=&quot;auto&quot;&gt;If the welcome message doesn&apos;t appear, run SSH&apos;s verbose mode by replacing &lt;code&gt;-T&lt;/code&gt;&amp;#x000A;with &lt;code&gt;-vvvT&lt;/code&gt; to understand where the error is.&lt;/p&gt;&amp;#x000A;&lt;h2 data-sourcepos=&quot;216:1-216:46&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-working-with-non-default-ssh-key-pair-paths&quot; class=&quot;anchor&quot; href=&quot;#working-with-non-default-ssh-key-pair-paths&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Working with non-default SSH key pair paths&lt;/h2&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;218:1-220:26&quot; dir=&quot;auto&quot;&gt;If you used a non-default file path for your GitLab SSH key pair,&amp;#x000A;you must configure your SSH client to find your GitLab private SSH key&amp;#x000A;for connections to GitLab.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;222:1-223:53&quot; dir=&quot;auto&quot;&gt;Open a terminal and use the following commands&amp;#x000A;(replacing &lt;code&gt;other_id_rsa&lt;/code&gt; with your private SSH key):&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight shell&quot; lang=&quot;shell&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;shell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;ssh-agent &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC2&quot; class=&quot;line&quot; lang=&quot;shell&quot;&gt;ssh-add ~/.ssh/other_id_rsa&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;230:1-233:44&quot; dir=&quot;auto&quot;&gt;To retain these settings, you&apos;ll need to save them to a configuration file.&amp;#x000A;For OpenSSH clients this is configured in the &lt;code&gt;~/.ssh/config&lt;/code&gt; file. In this&amp;#x000A;file you can set up configurations for multiple hosts, like GitLab.com, your&amp;#x000A;own GitLab instance, GitHub, Bitbucket, etc.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;235:1-235:66&quot; dir=&quot;auto&quot;&gt;Below are two example host configurations using their own SSH key:&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight conf&quot; lang=&quot;conf&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;conf&quot;&gt;&lt;span class=&quot;c&quot;&gt;# GitLab.com&lt;/span&gt;&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC2&quot; class=&quot;line&quot; lang=&quot;conf&quot;&gt;&lt;span class=&quot;n&quot;&gt;Host&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gitlab&lt;/span&gt;.&lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC3&quot; class=&quot;line&quot; lang=&quot;conf&quot;&gt;  &lt;span class=&quot;n&quot;&gt;Preferredauthentications&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;publickey&lt;/span&gt;&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC4&quot; class=&quot;line&quot; lang=&quot;conf&quot;&gt;  &lt;span class=&quot;n&quot;&gt;IdentityFile&lt;/span&gt; ~/.&lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;gitlab_com_rsa&lt;/span&gt;&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC5&quot; class=&quot;line&quot; lang=&quot;conf&quot;&gt;&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC6&quot; class=&quot;line&quot; lang=&quot;conf&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Private GitLab instance&lt;/span&gt;&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC7&quot; class=&quot;line&quot; lang=&quot;conf&quot;&gt;&lt;span class=&quot;n&quot;&gt;Host&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gitlab&lt;/span&gt;.&lt;span class=&quot;n&quot;&gt;company&lt;/span&gt;.&lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC8&quot; class=&quot;line&quot; lang=&quot;conf&quot;&gt;  &lt;span class=&quot;n&quot;&gt;Preferredauthentications&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;publickey&lt;/span&gt;&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC9&quot; class=&quot;line&quot; lang=&quot;conf&quot;&gt;  &lt;span class=&quot;n&quot;&gt;IdentityFile&lt;/span&gt; ~/.&lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;example_com_rsa&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;249:1-251:53&quot; dir=&quot;auto&quot;&gt;Public SSH keys need to be unique to GitLab, as they will bind to your account.&amp;#x000A;Your SSH key is the only identifier you&apos;ll have when pushing code via SSH,&amp;#x000A;that&apos;s why it needs to uniquely map to a single user.&lt;/p&gt;&amp;#x000A;&lt;h2 data-sourcepos=&quot;253:1-253:26&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-per-repository-ssh-keys&quot; class=&quot;anchor&quot; href=&quot;#per-repository-ssh-keys&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Per-repository SSH keys&lt;/h2&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;255:1-256:69&quot; dir=&quot;auto&quot;&gt;If you want to use different keys depending on the repository you are working&amp;#x000A;on, you can issue the following command while inside your repository:&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight shell&quot; lang=&quot;shell&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;shell&quot;&gt;git config core.sshCommand &lt;span class=&quot;s2&quot;&gt;&quot;ssh -o IdentitiesOnly=yes -i ~/.ssh/private-key-filename-for-this-repository -F /dev/null&quot;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;262:1-262:63&quot; dir=&quot;auto&quot;&gt;This will not use the SSH Agent and requires at least Git 2.10.&lt;/p&gt;&amp;#x000A;&lt;h2 data-sourcepos=&quot;264:1-264:14&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-deploy-keys&quot; class=&quot;anchor&quot; href=&quot;#deploy-keys&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Deploy keys&lt;/h2&gt;&amp;#x000A;&lt;h3 data-sourcepos=&quot;266:1-266:30&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-per-repository-deploy-keys&quot; class=&quot;anchor&quot; href=&quot;#per-repository-deploy-keys&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Per-repository deploy keys&lt;/h3&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;268:1-269:45&quot; dir=&quot;auto&quot;&gt;Deploy keys allow read-only or read-write (if enabled) access to one or&amp;#x000A;multiple projects with a single SSH key pair.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;271:1-273:19&quot; dir=&quot;auto&quot;&gt;This is really useful for cloning repositories to your Continuous&amp;#x000A;Integration (CI) server. By using deploy keys, you don&apos;t have to set up a&amp;#x000A;dummy user account.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;275:1-280:22&quot; dir=&quot;auto&quot;&gt;If you are a project maintainer or owner, you can add a deploy key in the&amp;#x000A;project&apos;s &lt;strong&gt;Settings &amp;gt; Repository&lt;/strong&gt; page by expanding the&amp;#x000A;&lt;strong&gt;Deploy Keys&lt;/strong&gt; section. Specify a title for the new&amp;#x000A;deploy key and paste a public SSH key. After this, the machine that uses&amp;#x000A;the corresponding private SSH key has read-only or read-write (if enabled)&amp;#x000A;access to the project.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;282:1-287:8&quot; dir=&quot;auto&quot;&gt;You can&apos;t add the same deploy key twice using the form.&amp;#x000A;If you want to add the same key to another project, please enable it in the&amp;#x000A;list that says &apos;Deploy keys from projects available to you&apos;. All the deploy&amp;#x000A;keys of all the projects you have access to are available. This project&amp;#x000A;access can happen through being a direct member of the project, or through&amp;#x000A;a group.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;289:1-290:8&quot; dir=&quot;auto&quot;&gt;Deploy keys can be shared between projects, you just need to add them to each&amp;#x000A;project.&lt;/p&gt;&amp;#x000A;&lt;h3 data-sourcepos=&quot;292:1-292:29&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-global-shared-deploy-keys&quot; class=&quot;anchor&quot; href=&quot;#global-shared-deploy-keys&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Global shared deploy keys&lt;/h3&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;294:1-295:66&quot; dir=&quot;auto&quot;&gt;Global Shared Deploy keys allow read-only or read-write (if enabled) access to&amp;#x000A;be configured on any repository in the entire GitLab installation.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;297:1-302:68&quot; dir=&quot;auto&quot;&gt;This is really useful for integrating repositories to secured, shared Continuous&amp;#x000A;Integration (CI) services or other shared services.&amp;#x000A;GitLab administrators can set up the Global Shared Deploy key in GitLab and&amp;#x000A;add the private key to any shared systems.  Individual repositories opt into&amp;#x000A;exposing their repository using these keys when a project maintainers (or higher)&amp;#x000A;authorizes a Global Shared Deploy key to be used with their project.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;304:1-306:48&quot; dir=&quot;auto&quot;&gt;Global Shared Keys can provide greater security compared to Per-Project Deploy&amp;#x000A;Keys since an administrator of the target integrated system is the only one&amp;#x000A;who needs to know and configure the private key.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;308:1-316:17&quot; dir=&quot;auto&quot;&gt;GitLab administrators set up Global Deploy keys in the Admin area under the&amp;#x000A;section &lt;strong&gt;Deploy Keys&lt;/strong&gt;. Ensure keys have a meaningful title as that will be&amp;#x000A;the primary way for project maintainers and owners to identify the correct Global&amp;#x000A;Deploy key to add. For instance, if the key gives access to a SaaS CI instance,&amp;#x000A;use the name of that service in the key name if that is all it is used for.&amp;#x000A;When creating Global Shared Deploy keys, give some thought to the granularity&amp;#x000A;of keys - they could be of very narrow usage such as just a specific service or&amp;#x000A;of broader usage for something like &quot;Anywhere you need to give read access to&amp;#x000A;your repository&quot;.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;318:1-321:54&quot; dir=&quot;auto&quot;&gt;Once a GitLab administrator adds the Global Deployment key, project maintainers&amp;#x000A;and owners can add it in project&apos;s &lt;strong&gt;Settings &amp;gt; Repository&lt;/strong&gt; page by expanding the&amp;#x000A;&lt;strong&gt;Deploy Keys&lt;/strong&gt; section and clicking &lt;strong&gt;Enable&lt;/strong&gt; next to the appropriate key listed&amp;#x000A;under &lt;strong&gt;Public deploy keys available to any project&lt;/strong&gt;.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;323:1-325:54&quot; dir=&quot;auto&quot;&gt;NOTE: &lt;strong&gt;Note:&lt;/strong&gt;&amp;#x000A;The heading &lt;strong&gt;Public deploy keys available to any project&lt;/strong&gt; only appears&amp;#x000A;if there is at least one Global Deploy Key configured.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;327:1-331:55&quot; dir=&quot;auto&quot;&gt;CAUTION: &lt;strong&gt;Warning:&lt;/strong&gt;&amp;#x000A;Defining Global Deploy Keys does not expose any given repository via&amp;#x000A;the key until that repository adds the Global Deploy Key to their project.&amp;#x000A;In this way the Global Deploy Keys enable access by other systems, but do&amp;#x000A;not implicitly give any access just by setting them up.&lt;/p&gt;&amp;#x000A;&lt;h2 data-sourcepos=&quot;333:1-333:15&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-applications&quot; class=&quot;anchor&quot; href=&quot;#applications&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Applications&lt;/h2&gt;&amp;#x000A;&lt;h3 data-sourcepos=&quot;335:1-335:11&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-eclipse&quot; class=&quot;anchor&quot; href=&quot;#eclipse&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Eclipse&lt;/h3&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;337:1-337:162&quot; dir=&quot;auto&quot;&gt;If you are using &lt;a href=&quot;https://www.eclipse.org/egit/&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;EGit&lt;/a&gt;, you can &lt;a href=&quot;https://wiki.eclipse.org/EGit/User_Guide#Eclipse_SSH_Configuration&quot; rel=&quot;nofollow noreferrer noopener&quot; target=&quot;_blank&quot;&gt;add your SSH key to Eclipse&lt;/a&gt;.&lt;/p&gt;&amp;#x000A;&lt;h2 data-sourcepos=&quot;339:1-339:27&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-ssh-on-the-gitlab-server&quot; class=&quot;anchor&quot; href=&quot;#ssh-on-the-gitlab-server&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;SSH on the GitLab server&lt;/h2&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;341:1-344:18&quot; dir=&quot;auto&quot;&gt;GitLab integrates with the system-installed SSH daemon, designating a user&amp;#x000A;(typically named &lt;code&gt;git&lt;/code&gt;) through which all access requests are handled. Users&amp;#x000A;connecting to the GitLab server over SSH are identified by their SSH key instead&amp;#x000A;of their username.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;346:1-350:15&quot; dir=&quot;auto&quot;&gt;SSH &lt;em&gt;client&lt;/em&gt; operations performed on the GitLab server wil be executed as this&amp;#x000A;user. Although it is possible to modify the SSH configuration for this user to,&amp;#x000A;e.g., provide a private SSH key to authenticate these requests by, this practice&amp;#x000A;is &lt;strong&gt;not supported&lt;/strong&gt; and is strongly discouraged as it presents significant&amp;#x000A;security risks.&lt;/p&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;352:1-353:61&quot; dir=&quot;auto&quot;&gt;The GitLab check process includes a check for this condition, and will direct you&amp;#x000A;to this section if your server is configured like this, e.g.:&lt;/p&gt;&amp;#x000A;&lt;pre class=&quot;code highlight js-syntax-highlight plaintext&quot; lang=&quot;plaintext&quot; v-pre=&quot;true&quot;&gt;&lt;code&gt;&lt;span id=&quot;LC1&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;$ gitlab-rake gitlab:check&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC2&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;# ...&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC3&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;Git user has default SSH configuration? ... no&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC4&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;  Try fixing it:&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC5&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;  mkdir ~/gitlab-check-backup-1504540051&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC6&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;  sudo mv /var/lib/git/.ssh/id_rsa ~/gitlab-check-backup-1504540051&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC7&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;  sudo mv /var/lib/git/.ssh/id_rsa.pub ~/gitlab-check-backup-1504540051&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC8&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;  For more information see:&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC9&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;  doc/ssh/README.md in section &quot;SSH on the GitLab server&quot;&lt;/span&gt;&amp;#x000A;&lt;span id=&quot;LC10&quot; class=&quot;line&quot; lang=&quot;plaintext&quot;&gt;  Please fix the error above and rerun the checks.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;368:1-369:64&quot; dir=&quot;auto&quot;&gt;Remove the custom configuration as soon as you&apos;re able to. These customizations&amp;#x000A;are &lt;em&gt;explicitly not supported&lt;/em&gt; and may stop working at any time.&lt;/p&gt;&amp;#x000A;&lt;h2 data-sourcepos=&quot;371:1-371:18&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;a id=&quot;user-content-troubleshooting&quot; class=&quot;anchor&quot; href=&quot;#troubleshooting&quot; aria-hidden=&quot;true&quot;&gt;&lt;/a&gt;Troubleshooting&lt;/h2&gt;&amp;#x000A;&lt;p data-sourcepos=&quot;373:1-374:39&quot; dir=&quot;auto&quot;&gt;If on Git clone you are prompted for a password like &lt;code&gt;git@gitlab.com&apos;s password:&lt;/code&gt;&amp;#x000A;something is wrong with your SSH setup.&lt;/p&gt;&amp;#x000A;&lt;ul data-sourcepos=&quot;376:1-381:51&quot; dir=&quot;auto&quot;&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;376:1-377:28&quot;&gt;Ensure that you generated your SSH key pair correctly and added the public SSH&amp;#x000A;key to your GitLab profile&lt;/li&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;378:1-379:26&quot;&gt;Try manually registering your private SSH key using &lt;code&gt;ssh-agent&lt;/code&gt; as documented&amp;#x000A;earlier in this document&lt;/li&gt;&amp;#x000A;&lt;li data-sourcepos=&quot;380:1-381:51&quot;&gt;Try to debug the connection by running &lt;code&gt;ssh -Tv git@example.com&lt;/code&gt;&amp;#x000A;(replacing &lt;code&gt;example.com&lt;/code&gt; with your GitLab domain)&lt;/li&gt;&amp;#x000A;&lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Git/" rel="tag"># Git</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/08/git/git推送本地项目到远程/" rel="next" title="git推送本地项目到远程">
+                  <i class="fa fa-chevron-left"></i> git推送本地项目到远程
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-在Linux或macOS上打开终端，或在Windows上打开Git-Bash-WSL。"><span class="nav-number">1.</span> <span class="nav-text">一. 在Linux或macOS上打开终端，或在Windows上打开Git Bash / WSL。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-生成新的ED25519-SSH密钥对："><span class="nav-number">2.</span> <span class="nav-text">二. 生成新的ED25519 SSH密钥对：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-接下来，系统将提示你输入文件路径以保存SSH密钥对。如果你还没有SSH密钥对且未生成部署密钥，请按下建议的路径"><span class="nav-number">3.</span> <span class="nav-text">三. 接下来，系统将提示你输入文件路径以保存SSH密钥对。如果你还没有SSH密钥对且未生成部署密钥，请按下建议的路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-确定路径后，系统将提示你输入密码以保护新的SSH密钥对。这是使用密码的最佳做法，但这不是必需的，你可以通过按Enter两次跳过创建密码"><span class="nav-number">4.</span> <span class="nav-text">四. 确定路径后，系统将提示你输入密码以保护新的SSH密钥对。这是使用密码的最佳做法，但这不是必需的，你可以通过按Enter两次跳过创建密码==</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-温馨提示"><span class="nav-number">5.</span> <span class="nav-text">五. 温馨提示</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="haidaoge">
+  <p class="site-author-name" itemprop="name">haidaoge</p>
+  <div class="site-description" itemprop="description">haidaoge 的日志</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags">
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haidaoge</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script><script src="/js/bookmark.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>

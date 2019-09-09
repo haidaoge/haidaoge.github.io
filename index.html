@@ -4,7 +4,7 @@
 
 
 
-<html lang="zh-cn">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -42,29 +42,29 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Kopieren',
-      copy_success: 'Kopiert',
-      copy_failure: 'Kopieren fehlgeschlagen'
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     },
     sidebarPadding: 40
   };
 </script>
 
-  <meta name="description" content="haidaoge 的个人博客">
+  <meta name="description" content="haidaoge 的日志">
 <meta name="keywords" content="haidaoge blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="haidaoge blog">
+<meta property="og:title" content="haidaoge 的日志">
 <meta property="og:url" content="haidaoge.github.io/index.html">
-<meta property="og:site_name" content="haidaoge blog">
-<meta property="og:description" content="haidaoge 的个人博客">
-<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="haidaoge 的日志">
+<meta property="og:description" content="haidaoge 的日志">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="haidaoge blog">
-<meta name="twitter:description" content="haidaoge 的个人博客">
+<meta name="twitter:title" content="haidaoge 的日志">
+<meta name="twitter:description" content="haidaoge 的日志">
   <link rel="canonical" href="haidaoge.github.io/">
 
 
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>haidaoge blog</title>
+  <title>haidaoge 的日志</title>
   
 
 
@@ -115,7 +115,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
   <div class="container use-motion">
     <div class="headband"></div>
 
@@ -126,14 +126,14 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">haidaoge blog</span>
+        <span class="site-title">haidaoge 的日志</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -153,7 +153,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
       
@@ -164,7 +164,29 @@
       
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
 
   </li>
       
@@ -175,13 +197,13 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
         <a href="javascript:;" class="popup-trigger">
         
-          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Suche</a>
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
       </li>
     
   </ul>
@@ -195,7 +217,7 @@
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocorrect="off" autocapitalize="none"
-           placeholder="Suche..." spellcheck="false"
+           placeholder="搜索..." spellcheck="false"
            type="text" id="search-input">
   </div>
   <span class="popup-btn-close">
@@ -229,21 +251,21 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="haidaoge.github.io/2019/09/01/index/">
+    <link itemprop="mainEntityOfPage" href="haidaoge.github.io/2019/09/08/git/git配置ssh/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haidaoge">
-      <meta itemprop="description" content="haidaoge 的个人博客">
+      <meta itemprop="description" content="haidaoge 的日志">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haidaoge blog">
+      <meta itemprop="name" content="haidaoge 的日志">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/01/index/" class="post-title-link" itemprop="url">主页</a>
+            <a href="/2019/09/08/git/git配置ssh/" class="post-title-link" itemprop="url">git配置ssh</a>
           
         </h1>
 
@@ -252,18 +274,31 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="Erstellt: 2019-09-01 16:17:25 / Geändert am: 20:39:59" itemprop="dateCreated datePublished" datetime="2019-09-01T16:17:25+08:00">2019-09-01</time>
+              <time title="创建时间：2019-09-08 17:41:53 / 修改时间：17:31:24" itemprop="dateCreated datePublished" datetime="2019-09-08T17:41:53+08:00">2019-09-08</time>
             </span>
           
             
 
             
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -277,7 +312,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
+          <h4 id="一-在Linux或macOS上打开终端，或在Windows上打开Git-Bash-WSL。"><a href="#一-在Linux或macOS上打开终端，或在Windows上打开Git-Bash-WSL。" class="headerlink" title="一. 在Linux或macOS上打开终端，或在Windows上打开Git Bash / WSL。"></a>一. 在Linux或macOS上打开终端，或在Windows上打开Git Bash / WSL。</h4><h4 id="二-生成新的ED25519-SSH密钥对："><a href="#二-生成新的ED25519-SSH密钥对：" class="headerlink" title="二. 生成新的ED25519 SSH密钥对："></a>二. 生成新的ED25519 SSH密钥对：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;email@example.com&quot;</span><br></pre></td></tr></table></figure><p>或者，如果你想使用RSA：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -o -t rsa -b 4096 -C &quot;email@example.com&quot;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/08/git/git配置ssh/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -301,21 +345,21 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="haidaoge.github.io/2019/09/01/test/">
+    <link itemprop="mainEntityOfPage" href="haidaoge.github.io/2019/09/08/git/git推送本地项目到远程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="haidaoge">
-      <meta itemprop="description" content="haidaoge 的个人博客">
+      <meta itemprop="description" content="haidaoge 的日志">
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="haidaoge blog">
+      <meta itemprop="name" content="haidaoge 的日志">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/01/test/" class="post-title-link" itemprop="url">个人简历</a>
+            <a href="/2019/09/08/git/git推送本地项目到远程/" class="post-title-link" itemprop="url">git推送本地项目到远程</a>
           
         </h1>
 
@@ -324,18 +368,31 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="Erstellt: 2019-09-01 16:17:25 / Geändert am: 20:41:20" itemprop="dateCreated datePublished" datetime="2019-09-01T16:17:25+08:00">2019-09-01</time>
+              <time title="创建时间：2019-09-08 16:47:32 / 修改时间：17:29:46" itemprop="dateCreated datePublished" datetime="2019-09-08T16:47:32+08:00">2019-09-08</time>
             </span>
           
             
 
             
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -349,21 +406,394 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <!DOCTYPE html>
-<html lang="zh-cn">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>个人简历</title>
-    <link rel="stylesheet" href="/css/cv/index.css">
-</head>
-<body>
+          <h3 id="git推送本地项目到远程"><a href="#git推送本地项目到远程" class="headerlink" title="git推送本地项目到远程"></a>git推送本地项目到远程</h3><ol>
+<li>在github新建一个分支项目名与本地项目名相同</li>
+<li>在本地项目根目录下初始化一个仓库</li>
+</ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure><ol start="3">
+<li>将本地工程代码提交，git会为你在本地默认创建一个master分支：</li>
+</ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;init project&quot;</span><br></pre></td></tr></table></figure><ol start="4">
+<li>将本地仓库关联远程仓库：</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/08/git/git推送本地项目到远程/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
 
-<script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.min.js"></script>
-<script src="/js/cv/cv.js"></script>
-</body>
-</html>
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="haidaoge.github.io/2019/09/08/git/git 创建回退到某个节点的新分支/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haidaoge">
+      <meta itemprop="description" content="haidaoge 的日志">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haidaoge 的日志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/08/git/git 创建回退到某个节点的新分支/" class="post-title-link" itemprop="url">git 创建回退到某个节点的新分支</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-08 16:41:53 / 修改时间：17:20:16" itemprop="dateCreated datePublished" datetime="2019-09-08T16:41:53+08:00">2019-09-08</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="git-创建回退到某个节点的新分支"><a href="#git-创建回退到某个节点的新分支" class="headerlink" title="git 创建回退到某个节点的新分支"></a>git 创建回退到某个节点的新分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 1.新建一个临时分支</span><br><span class="line">git checkout -b temp</span><br><span class="line"></span><br><span class="line">// 2.在临时分支上回退到某个版本</span><br><span class="line">git reset --hard &lt;版本号&gt;</span><br><span class="line"></span><br><span class="line">// 3.创建想要到分支名</span><br><span class="line">git checkout -b &lt;分支名&gt;</span><br><span class="line"></span><br><span class="line">// 4.将新建分支推送到远程仓库</span><br><span class="line">git push origin &lt;分支名&gt;</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="haidaoge.github.io/2019/09/08/git/git忽略规则及.gitignore规则不生效的解决办法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haidaoge">
+      <meta itemprop="description" content="haidaoge 的日志">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haidaoge 的日志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/08/git/git忽略规则及.gitignore规则不生效的解决办法/" class="post-title-link" itemprop="url">git忽略规则及.gitignore规则不生效的解决办法</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-08 16:41:53 / 修改时间：17:21:55" itemprop="dateCreated datePublished" datetime="2019-09-08T16:41:53+08:00">2019-09-08</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="git忽略规则及-gitignore规则不生效的解决办法"><a href="#git忽略规则及-gitignore规则不生效的解决办法" class="headerlink" title="git忽略规则及.gitignore规则不生效的解决办法"></a>git忽略规则及.gitignore规则不生效的解决办法</h3><p>在git中如果想忽略掉某个文件，不让这个文件提交到版本库中，可以使用修改根目录中 .gitignore 文件的方法（如无，则需自己手工建立此文件）。这个文件每一行保存了一个匹配的规则。</p><p>例如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 此为注释 – 将被 Git 忽略</span><br><span class="line">        </span><br><span class="line">*.a   # 忽略所有 .a 结尾的文件</span><br><span class="line">!lib.a# 但 lib.a 除外</span><br><span class="line">/TODO # 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO</span><br><span class="line">build/# 忽略 build/ 目录下的所有文件</span><br><span class="line">doc/*.txt # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/08/git/git忽略规则及.gitignore规则不生效的解决办法/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="haidaoge.github.io/2019/09/08/git/git常用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haidaoge">
+      <meta itemprop="description" content="haidaoge 的日志">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haidaoge 的日志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/08/git/git常用命令/" class="post-title-link" itemprop="url">git 常用命令</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-08 16:41:53 / 修改时间：17:16:38" itemprop="dateCreated datePublished" datetime="2019-09-08T16:41:53+08:00">2019-09-08</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="提交一个文件夹下所有的文件"><a href="#提交一个文件夹下所有的文件" class="headerlink" title="提交一个文件夹下所有的文件"></a>提交一个文件夹下所有的文件</h3><ol>
+<li>git add  ‘文件夹’</li>
+<li>git commit -m ‘描述’</li>
+<li>git push –all</li>
+</ol><h3 id="新建分支"><a href="#新建分支" class="headerlink" title="新建分支"></a>新建分支</h3><p>git branch ‘分支名’</p><h3 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h3><p>git checkout ‘分支名’</p><h3 id="新建并切换分支"><a href="#新建并切换分支" class="headerlink" title="新建并切换分支"></a>新建并切换分支</h3><p>git checkout -b ‘分支名’</p><h3 id="拉取"><a href="#拉取" class="headerlink" title="拉取"></a>拉取</h3><p>git pull </p><h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><p>git merge ‘被合并的分支’</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/08/git/git常用命令/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="haidaoge.github.io/2019/09/08/linux/linux常用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haidaoge">
+      <meta itemprop="description" content="haidaoge 的日志">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haidaoge 的日志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/08/linux/linux常用命令/" class="post-title-link" itemprop="url">Linux 常用命令</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-08 15:49:10 / 修改时间：17:11:51" itemprop="dateCreated datePublished" datetime="2019-09-08T15:49:10+08:00">2019-09-08</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="linux-编辑保存文件命令"><a href="#linux-编辑保存文件命令" class="headerlink" title="linux 编辑保存文件命令"></a>linux 编辑保存文件命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1、vi 和 vim 的两种工作模式</span><br><span class="line"></span><br><span class="line">命令模式：打开一个文件后的默认模式</span><br><span class="line"></span><br><span class="line">编辑模式：打开的文件键盘输入&quot;i&quot; 进入插入编辑模式，进行增删改操作的一个模式。</span><br><span class="line"></span><br><span class="line">2、键盘输入&quot;i&quot;进入编辑模式后，就可以进行编写文件了</span><br><span class="line"></span><br><span class="line">编写完怎么保存文件呢？</span><br><span class="line"></span><br><span class="line">1）先按“esc”键 退出编辑模式，切换到命令模式，然后输入以下命令就可以</span><br><span class="line"></span><br><span class="line">这些操作要保证是在命令模式下进行。</span><br><span class="line"></span><br><span class="line">2）保存并退出文件：&quot;:wq&quot;</span><br><span class="line"></span><br><span class="line">3) 如果只想保存文件 ：&quot;:w&quot;</span><br><span class="line"></span><br><span class="line">4）放弃所有文件修改：&quot;:q!&quot;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/08/linux/linux常用命令/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -406,10 +836,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Inhaltsverzeichnis
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Übersicht
+          站点概览
         </li>
       </ul>
 
@@ -424,15 +854,41 @@
       src="/images/avatar.png"
       alt="haidaoge">
   <p class="site-author-name" itemprop="name">haidaoge</p>
-  <div class="site-description" itemprop="description">haidaoge 的个人博客</div>
+  <div class="site-description" itemprop="description">haidaoge 的日志</div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
-          <span class="site-state-item-name">Artikel</span>
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags">
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
         </a>
       </div>
     
@@ -463,9 +919,9 @@
   </span>
   <span class="author" itemprop="copyrightHolder">haidaoge</span>
 </div>
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
 
         
 <div class="busuanzi-count">
@@ -473,7 +929,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
-    <span class="site-uv" title="Alle Besucher">
+    <span class="site-uv" title="总访客量">
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
     </span>
   
@@ -482,7 +938,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-eye"></i>
     </span>
-    <span class="site-pv" title="Alle Aufrufe">
+    <span class="site-pv" title="总访问量">
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
     </span>
   
@@ -507,6 +963,9 @@
   
 
 
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
