@@ -54,19 +54,19 @@
   };
 </script>
 
-  <meta name="description" content="haidaoge 的日志">
+  <meta name="description" content="echarts的容器设置了自适应 添加window.onresize=myCharts.resize在setOption之后 12345678910111213141516171819202122232425262728293031323334353637383940414243var worldMapContainer = document.getElementById(&amp;apos;WorldM">
 <meta name="keywords" content="haidaoge blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="haidaoge.github.io/categories/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="echarts自适应设置">
+<meta property="og:url" content="haidaoge.github.io/2019/09/09/echarts/echarts自适应设置/index.html">
 <meta property="og:site_name" content="haidaoge 的日志">
-<meta property="og:description" content="haidaoge 的日志">
+<meta property="og:description" content="echarts的容器设置了自适应 添加window.onresize=myCharts.resize在setOption之后 12345678910111213141516171819202122232425262728293031323334353637383940414243var worldMapContainer = document.getElementById(&amp;apos;WorldM">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-08T08:02:47.593Z">
+<meta property="og:updated_time" content="2019-09-09T15:43:55.370Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="haidaoge 的日志">
-  <link rel="canonical" href="haidaoge.github.io/categories/">
+<meta name="twitter:title" content="echarts自适应设置">
+<meta name="twitter:description" content="echarts的容器设置了自适应 添加window.onresize=myCharts.resize在setOption之后 12345678910111213141516171819202122232425262728293031323334353637383940414243var worldMapContainer = document.getElementById(&amp;apos;WorldM">
+  <link rel="canonical" href="haidaoge.github.io/2019/09/09/echarts/echarts自适应设置/">
 
 
 <script id="page-configurations">
@@ -74,13 +74,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: true,
+    isPost: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>分类 | haidaoge 的日志</title>
+  <title>echarts自适应设置 | haidaoge 的日志</title>
   
 
 
@@ -244,72 +244,116 @@
         <div class="content-wrap">
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
-    
-    
-    
-    <div class="post-block page">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">分类
-
-</h1>
-
-<div class="post-meta">
+      <article itemscope itemtype="http://schema.org/Article">
   
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="haidaoge.github.io/2019/09/09/echarts/echarts自适应设置/">
 
-</div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haidaoge">
+      <meta itemprop="description" content="haidaoge 的日志">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
 
-</header>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haidaoge 的日志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">echarts自适应设置
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-09 23:34:01 / 修改时间：23:43:55" itemprop="dateCreated datePublished" datetime="2019-09-09T23:34:01+08:00">2019-09-09</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
+        <h4 id="echarts的容器设置了自适应"><a href="#echarts的容器设置了自适应" class="headerlink" title="echarts的容器设置了自适应"></a>echarts的容器设置了自适应</h4><ul>
+<li><strong>添加window.onresize=myCharts.resize在setOption之后</strong></li>
+</ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">var worldMapContainer = document.getElementById(&apos;WorldMap&apos;);</span><br><span class="line"></span><br><span class="line">//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽</span><br><span class="line">var resizeWorldMapContainer = function () &#123;</span><br><span class="line">    worldMapContainer.style.width = window.innerWidth+&apos;px&apos;;</span><br><span class="line">    worldMapContainer.style.height = window.innerHeight+&apos;px&apos;;</span><br><span class="line">&#125;;</span><br><span class="line">//设置容器高宽</span><br><span class="line">resizeWorldMapContainer();</span><br><span class="line">// 基于准备好的dom，初始化echarts实例</span><br><span class="line">var myChart = echarts.init(worldMapContainer);</span><br><span class="line"></span><br><span class="line">// 指定图表的配置项和数据</span><br><span class="line">var option = &#123;</span><br><span class="line">    title: &#123;</span><br><span class="line">        text: &apos;ECharts 入门示例&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    tooltip: &#123;&#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        data:[&apos;销量&apos;],</span><br><span class="line">        height: worldMapContainer.style.height,</span><br><span class="line">        width: worldMapContainer.style.width</span><br><span class="line">    &#125;,</span><br><span class="line">    xAxis: &#123;</span><br><span class="line">        data: [&quot;衬衫&quot;,&quot;羊毛衫&quot;,&quot;雪纺衫&quot;,&quot;裤子&quot;,&quot;高跟鞋&quot;,&quot;袜子&quot;]</span><br><span class="line">    &#125;,</span><br><span class="line">    yAxis: &#123;&#125;,</span><br><span class="line">    series: [&#123;</span><br><span class="line">        name: &apos;销量&apos;,</span><br><span class="line">        type: &apos;bar&apos;,</span><br><span class="line">        data: [5, 20, 36, 10, 10, 20]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 使用刚指定的配置项和数据显示图表。</span><br><span class="line">myChart.setOption(option);</span><br><span class="line"></span><br><span class="line">//用于使chart自适应高度和宽度</span><br><span class="line">window.onresize = function () &#123;</span><br><span class="line">    //重置容器高宽</span><br><span class="line">    resizeWorldMapContainer();</span><br><span class="line">    myChart.resize();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<ul>
+<li><strong>如果容器设置固定大小则需要 resizeWorldMapContainer()方法</strong></li>
+<li><strong>如果容器本身就是自适应样式，则不需要resizeWorldMapContainer()方法</strong></li>
+</ul>
+
+    </div>
+
+    
+    
+    
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-              目前共计 3 个分类
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/09/echarts/echarts设置柱状图交差显示/" rel="next" title="echarts设置柱状图交差显示">
+                  <i class="fa fa-chevron-left"></i> echarts设置柱状图交差显示
+                </a>
+              
             </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Echarts/">Echarts</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li></ul>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
             </div>
           </div>
         
-      </div>
-      
-      
-      
-    </div>
+      </footer>
     
+  </div>
+  
+  
+  
+  </article>
 
-    
-    
-    
   </div>
 
 
@@ -346,6 +390,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#echarts的容器设置了自适应"><span class="nav-number">1.</span> <span class="nav-text">echarts的容器设置了自适应</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 

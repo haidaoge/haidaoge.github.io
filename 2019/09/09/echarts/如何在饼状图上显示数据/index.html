@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.jpg?v=7.4.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="1.饼状图数据显示  数据直接显示方法在series中使用label，如下所示  12345678910label : &amp;#123;	normal : &amp;#123;		formatter: &amp;apos;&amp;#123;d&amp;#125;%&amp;apos;,		position: &amp;apos;inner&amp;apos;,		textStyle : &amp;#123;			fontWeight : &amp;apos;normal">
+<meta name="keywords" content="Echarts">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在饼状图上面标注数据">
+<meta property="og:url" content="haidaoge.github.io/2019/09/09/echarts/如何在饼状图上显示数据/index.html">
+<meta property="og:site_name" content="haidaoge 的日志">
+<meta property="og:description" content="1.饼状图数据显示  数据直接显示方法在series中使用label，如下所示  12345678910label : &amp;#123;	normal : &amp;#123;		formatter: &amp;apos;&amp;#123;d&amp;#125;%&amp;apos;,		position: &amp;apos;inner&amp;apos;,		textStyle : &amp;#123;			fontWeight : &amp;apos;normal">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/F29E35CAA9034A5AA3704164D1BFFF2B?method=download&shareKey=19785349e20ba5e3e307105ae8ada9e3">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/956EE593244044BEB791F9FAF3CD1C93?method=download&shareKey=ae05663a742af7aa0f3e5f2ab597f62e">
+<meta property="og:updated_time" content="2019-09-09T15:44:53.901Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何在饼状图上面标注数据">
+<meta name="twitter:description" content="1.饼状图数据显示  数据直接显示方法在series中使用label，如下所示  12345678910label : &amp;#123;	normal : &amp;#123;		formatter: &amp;apos;&amp;#123;d&amp;#125;%&amp;apos;,		position: &amp;apos;inner&amp;apos;,		textStyle : &amp;#123;			fontWeight : &amp;apos;normal">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/F29E35CAA9034A5AA3704164D1BFFF2B?method=download&shareKey=19785349e20ba5e3e307105ae8ada9e3">
+  <link rel="canonical" href="haidaoge.github.io/2019/09/09/echarts/如何在饼状图上显示数据/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>如何在饼状图上面标注数据 | haidaoge 的日志</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">haidaoge 的日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="haidaoge.github.io/2019/09/09/echarts/如何在饼状图上显示数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="haidaoge">
+      <meta itemprop="description" content="haidaoge 的日志">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haidaoge 的日志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">如何在饼状图上面标注数据
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-09 23:28:22 / 修改时间：23:44:53" itemprop="dateCreated datePublished" datetime="2019-09-09T23:28:22+08:00">2019-09-09</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Echarts/" itemprop="url" rel="index"><span itemprop="name">Echarts</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-饼状图数据显示"><a href="#1-饼状图数据显示" class="headerlink" title="1.饼状图数据显示"></a>1.饼状图数据显示</h1><p><img src="https://note.youdao.com/yws/api/personal/file/F29E35CAA9034A5AA3704164D1BFFF2B?method=download&shareKey=19785349e20ba5e3e307105ae8ada9e3" alt="image"></p>
+<blockquote>
+<p>数据直接显示方法在series中使用label，如下所示</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">label : &#123;</span><br><span class="line">	normal : &#123;</span><br><span class="line">		formatter: &apos;&#123;d&#125;%&apos;,</span><br><span class="line">		position: &apos;inner&apos;,</span><br><span class="line">		textStyle : &#123;</span><br><span class="line">			fontWeight : &apos;normal&apos;,</span><br><span class="line">			fontSize : 15</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<blockquote>
+<p>全部代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">function echartZms(obj)&#123;</span><br><span class="line">	var option = &#123;</span><br><span class="line">	    tooltip : &#123;</span><br><span class="line">	        trigger: &apos;item&apos;,</span><br><span class="line">	    &#125;,</span><br><span class="line">	    legend: &#123;</span><br><span class="line">	    	bottom: &quot;5%&quot;,</span><br><span class="line">	    	left: &quot;20%&quot;, </span><br><span class="line">	        orient: &apos;horizontal&apos;,  </span><br><span class="line">	        selectedMode:false, </span><br><span class="line">	        textStyle: &#123; </span><br><span class="line">	        	color: &apos;#fff&apos; </span><br><span class="line">	        &#125;, </span><br><span class="line">	        data: [&apos;已启动&apos;,&apos;未启动&apos;]</span><br><span class="line">	    &#125;,</span><br><span class="line">	    series : [</span><br><span class="line">	        &#123;</span><br><span class="line">	            type: &apos;pie&apos;,</span><br><span class="line">	            avoidLabelOverlap: false,</span><br><span class="line">	            hoverAnimation:false,	/*关闭 hover 在扇区上的放大动画效果。*/</span><br><span class="line">	            silent:true,</span><br><span class="line">	            radius : &apos;70%&apos;,</span><br><span class="line">	            center: [&apos;50%&apos;, &apos;42%&apos;],</span><br><span class="line">	            label : &#123;</span><br><span class="line">					normal : &#123;</span><br><span class="line">						formatter: &apos;&#123;d&#125;%&apos;,</span><br><span class="line">						position: &apos;inner&apos;,</span><br><span class="line">						textStyle : &#123;</span><br><span class="line">							fontWeight : &apos;normal&apos;,</span><br><span class="line">							fontSize : 15</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;,  </span><br><span class="line">	            data:[&#123;</span><br><span class="line">	           			value: 335, </span><br><span class="line">	           			name:&apos;已启动&apos;,</span><br><span class="line">	           			label:&#123;</span><br><span class="line">	           				show:true,</span><br><span class="line">	           				position:[20,20]</span><br><span class="line">	           			&#125;,</span><br><span class="line">	           			itemStyle: &#123;</span><br><span class="line">	           				normal: &#123;</span><br><span class="line">	           					color: &quot;#167bd7&quot;</span><br><span class="line">	           				&#125;</span><br><span class="line">	           			&#125;</span><br><span class="line">	           		&#125;,&#123;</span><br><span class="line">	           			value: 310, </span><br><span class="line">	           			name:&apos;未启动&apos;,</span><br><span class="line">	           			itemStyle: &#123;</span><br><span class="line">	           				normal: &#123;</span><br><span class="line">	           					color: &quot;#414d63&quot;</span><br><span class="line">	           				&#125;</span><br><span class="line">	           			&#125;</span><br><span class="line">	           		&#125;</span><br><span class="line">	            ],</span><br><span class="line">	            /*itemStyle: &#123;</span><br><span class="line">	                emphasis: &#123;</span><br><span class="line">	                    shadowBlur: 10,</span><br><span class="line">	                    shadowOffsetX: 0,</span><br><span class="line">	                    shadowColor: &apos;rgba(0, 0, 0, 0.5)&apos;</span><br><span class="line">	                &#125;</span><br><span class="line">	            &#125;*/</span><br><span class="line">	        &#125;</span><br><span class="line">	    ]</span><br><span class="line">	&#125;;</span><br><span class="line">	obj.setOption(option);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-环形图数据显示"><a href="#2-环形图数据显示" class="headerlink" title="2.环形图数据显示"></a>2.环形图数据显示</h1><p><img src="https://note.youdao.com/yws/api/personal/file/956EE593244044BEB791F9FAF3CD1C93?method=download&shareKey=ae05663a742af7aa0f3e5f2ab597f62e" alt="image"></p>
+<blockquote>
+<p>同样在series中使用lable</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">label: &#123;</span><br><span class="line">    normal: &#123;</span><br><span class="line">        position: &apos;center&apos;,</span><br><span class="line">        fontSize: 14,</span><br><span class="line">        formatter:  function(obj) &#123;</span><br><span class="line">        	var tit,</span><br><span class="line">        		data = obj.data;</span><br><span class="line">        	if(data.name == &apos;已启动&apos;)&#123;</span><br><span class="line">        		tit = data.value+&apos;%已启动\n\n\n\n&apos;;</span><br><span class="line">        	&#125;else if(data.name == &apos;已关闭&apos;)&#123;</span><br><span class="line">        		tit = data.value+&apos;%已关闭&apos;;</span><br><span class="line">        	&#125;else if(data.name == &apos;已故障&apos;)&#123;</span><br><span class="line">        		tit = &apos;\n\n\n\n&apos;+ data.value+&apos;%已故障&apos;;</span><br><span class="line">        	&#125;;</span><br><span class="line">        	return tit;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>全部代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">var option = &#123;</span><br><span class="line">	    tooltip: &#123;</span><br><span class="line">	        trigger: &apos;item&apos;,</span><br><span class="line">	        formatter: &quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125;: &#123;c&#125; (&#123;d&#125;%)&quot;</span><br><span class="line">	    &#125;,</span><br><span class="line">	    legend: &#123;</span><br><span class="line">	    	bottom: &quot;5%&quot;,</span><br><span class="line">	    	left: &quot;5%&quot;, </span><br><span class="line">	        orient: &apos;horizontal&apos;,  </span><br><span class="line">	        selectedMode:false, </span><br><span class="line">	        textStyle: &#123; </span><br><span class="line">	        	color: &apos;#fff&apos; </span><br><span class="line">	        &#125;, </span><br><span class="line">	        data:[&apos;已启动&apos;,&apos;已关闭&apos;,&apos;已故障&apos;] </span><br><span class="line">	    &#125;, </span><br><span class="line">	    series: [</span><br><span class="line">	        &#123;</span><br><span class="line">	            type:&apos;pie&apos;,</span><br><span class="line">	            center: [&apos;50%&apos;, &apos;42%&apos;],</span><br><span class="line">	            radius: [&apos;50%&apos;, &apos;70%&apos;],</span><br><span class="line">	            avoidLabelOverlap: false,</span><br><span class="line">	            hoverAnimation:false,	/*关闭 hover 在扇区上的放大动画效果。*/</span><br><span class="line">	            cursor:&apos;default&apos;, /*鼠标悬浮时在图形元素上时鼠标的样式是什么。同 CSS 的 cursor。*/</span><br><span class="line">	            silent:true,	/*图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。*/</span><br><span class="line">	            label: &#123;</span><br><span class="line">	                normal: &#123;</span><br><span class="line">	                    position: &apos;center&apos;,</span><br><span class="line">	                    fontSize: 14,</span><br><span class="line">	                    formatter:  function(obj) &#123;</span><br><span class="line">	                    	var tit,</span><br><span class="line">	                    		data = obj.data;</span><br><span class="line">	                    	if(data.name == &apos;已启动&apos;)&#123;</span><br><span class="line">	                    		tit = data.value+&apos;%已启动\n\n\n\n&apos;;</span><br><span class="line">	                    	&#125;else if(data.name == &apos;已关闭&apos;)&#123;</span><br><span class="line">	                    		tit = data.value+&apos;%已关闭&apos;;</span><br><span class="line">	                    	&#125;else if(data.name == &apos;已故障&apos;)&#123;</span><br><span class="line">	                    		tit = &apos;\n\n\n\n&apos;+ data.value+&apos;%已故障&apos;;</span><br><span class="line">	                    	&#125;;</span><br><span class="line">	                    	return tit;</span><br><span class="line">	                    &#125;</span><br><span class="line">	                &#125;</span><br><span class="line">	            &#125;,</span><br><span class="line">	            data:[</span><br><span class="line">	           		&#123;</span><br><span class="line">	           			value: data[1], </span><br><span class="line">	           			name:&apos;已启动&apos;,</span><br><span class="line">	           			itemStyle: &#123;</span><br><span class="line">	           				normal: &#123;</span><br><span class="line">	           					color: &quot;#02fb01&quot;</span><br><span class="line">	           				&#125;</span><br><span class="line">	           			&#125;</span><br><span class="line">	           		&#125;,</span><br><span class="line">	           		&#123;</span><br><span class="line">	           			value: data[0], </span><br><span class="line">	           			name:&apos;已关闭&apos;,</span><br><span class="line">	           			itemStyle: &#123;</span><br><span class="line">	           				normal: &#123;</span><br><span class="line">	           					color: &quot;#157ad2&quot;</span><br><span class="line">	           				&#125;</span><br><span class="line">	           			&#125;</span><br><span class="line">	           		&#125;,</span><br><span class="line">	           		&#123;</span><br><span class="line">	           			value: data[2], </span><br><span class="line">	           			name:&apos;已故障&apos;,</span><br><span class="line">	           			itemStyle: &#123;</span><br><span class="line">	           				normal: &#123;</span><br><span class="line">	           					color: &quot;#d14f57&quot;</span><br><span class="line">	           				&#125;</span><br><span class="line">	           			&#125;</span><br><span class="line">	           		&#125;</span><br><span class="line">	            ]</span><br><span class="line">	        &#125;</span><br><span class="line">	    ]</span><br><span class="line">	&#125;</span><br><span class="line">	obj.setOption(option);</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Echarts/" rel="tag"># Echarts</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/09/echarts/" rel="next" title="如何在饼状图上面标注数据">
+                  <i class="fa fa-chevron-left"></i> 如何在饼状图上面标注数据
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/09/echarts/echarts设置柱状图交差显示/" rel="prev" title="echarts设置柱状图交差显示">
+                  echarts设置柱状图交差显示 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-饼状图数据显示"><span class="nav-number">1.</span> <span class="nav-text">1.饼状图数据显示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-环形图数据显示"><span class="nav-number">2.</span> <span class="nav-text">2.环形图数据显示</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.png"
+      alt="haidaoge">
+  <p class="site-author-name" itemprop="name">haidaoge</p>
+  <div class="site-description" itemprop="description">haidaoge 的日志</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haidaoge</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script><script src="/js/bookmark.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>
